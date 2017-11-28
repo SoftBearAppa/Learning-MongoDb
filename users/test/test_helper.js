@@ -9,7 +9,9 @@ mongoose.Promise = global.Promise;
 before((done) => {
 
   /* Note that the `connect` below, the database 'user_test' doesn't need to exsit right off the bat. Mongoose works with MongoDb, when you try to save data to database, it will create it at that time.*/
-  mongoose.connect('mongodb://localhost/users_test');
+  mongoose.connect('mongodb://localhost/users_test', {
+    useMongoClient: true,
+  });
   mongoose.connection
 
     /*  'open' & 'error' are specific strings that we need to use with Mongoose for their respecitive callsbacks */
