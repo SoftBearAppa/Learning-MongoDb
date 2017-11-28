@@ -12,7 +12,12 @@ describe('Reading users out of the database', () => {
       .then(() => done());
   });
 
-  it('finds all users with the name of "joe"', () => {
-
+  it('finds all users with the name of "joe"', (done) => {
+    /* Uses `.find()` method from `User()` model to find all instances of 'Joe' */
+    User.find({ name: 'Joe' })
+      .then((user) => {
+        console.log(user);
+        done();
+      })
   });
 });
