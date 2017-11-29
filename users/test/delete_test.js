@@ -18,7 +18,7 @@ describe('Deleting a user', () => {
     joe.remove()
       .then(() => {
 
-        /* After removing the instance from the database, we need to query the database and still see of a User instance exists with the property 'name' & value of 'Joe'.*/
+        /* Finds the first instance of `User()`, with the property 'name' & has a value of 'Joe'. After removing the instance from the database, we need to query the database and still see of a User instance exists with the property 'name' & value of 'Joe'.*/
         User.findOne({ name: 'Joe' })
           .then((user) => {
             assert( user === null );
@@ -27,15 +27,24 @@ describe('Deleting a user', () => {
       });
   });
 
-  it('model method remove', (done) => {
+  /* We look at the class(Model) User & tests whether we have removed ALL instances that has a property 'name' with a value of 'Joe' */
+  it('class(Model) method remove', (done) => {
+    User.remove({ name: 'Joe' })
+      .then(() => {
+
+        User.findOne({ name: 'Joe' })
+          .then((user) => {
+            assert(user === null);
+            done();
+          });
+      });
+  });
+
+  it('class(Model) method findAndRemove', (done) => {
 
   });
 
-  it('model method findAndRemove', (done) => {
-
-  });
-
-  it('model method findByIdAndRemove', (done) => {
+  it('class(Model) method findByIdAndRemove', (done) => {
 
   });
 });
