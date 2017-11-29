@@ -31,7 +31,6 @@ describe('Deleting a user', () => {
   it('class(Model) method remove', (done) => {
     User.remove({ name: 'Joe' })
       .then(() => {
-
         User.findOne({ name: 'Joe' })
           .then((user) => {
             assert(user === null);
@@ -40,11 +39,27 @@ describe('Deleting a user', () => {
       });
   });
 
-  it('class(Model) method findAndRemove', (done) => {
-
+  /* Another method to removing data from the database using `.findOneAndRemove()`. Find the first instance using the `User()` model, with a property 'name' with a value of 'Joe' & removing it. */
+  it('class(Model) method findOneAndRemove', (done) => {
+    User.findOneAndRemove({ name: 'Joe' })
+      .then(() => {
+        User.findOne({ name: 'Joe' })
+          .then((user) => {
+            assert(user === null);
+            done();
+          });
+      });
   });
 
+  /* Yet another method to removing data from the database using the `.findByIdAndRemove()` method from Mongoose Model class. Note that we don't need to stringify the ID, because Mongoose already know what to do with the object that it is being passed. */
   it('class(Model) method findByIdAndRemove', (done) => {
-
+    User.findByIdAndRemove(joe._id)
+      .then(() => {
+        User.findOne({ name: 'Joe' })
+          .then((user) => {
+            assert(user === null);
+            done();
+          });
+      });
   });
 });
