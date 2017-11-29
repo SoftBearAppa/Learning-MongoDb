@@ -16,7 +16,9 @@ describe('Reading users out of the database', () => {
     /* Uses `.find()` method from `User()` model to find all instances of 'Joe' */
     User.find({ name: 'Joe' })
       .then((user) => {
-        console.log(user);
+
+        /* The returned value for user & joe is an object that as a string {ObjectId( *then some string*)}; We need to Stringify the value to read it correctly. Aso when the Instance that `joe()` is created, Mongoose assigns it an ID before it gets saved to the Database as well. */
+        assert(user[0]._id.toString() === joe._id.toString())
         done();
       })
   });
