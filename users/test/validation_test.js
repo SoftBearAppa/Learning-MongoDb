@@ -4,7 +4,7 @@ const User = require('../src/user');
 describe('Validation records', () => {
 
   /* Tests whether the validation is working */
-  it('Requires a user name', (done) => {
+  it("Requires a `User()` name", (done) => {
 
     /*  Create a new `User()` instance. Explicated putting in 'undefined' as value, so that it is clear that there should be a valid value. */
     const user = new User({ name: undefined });
@@ -16,6 +16,15 @@ describe('Validation records', () => {
     const { message } = validationResult.errors.name;
 
     assert(message === 'Name is required.')
+    done();
+  });
+
+  it("Requires a `User()` name to be longer than 2 characters", (done) => {
+    const user = new User({ name: 'Al' });
+    const validationResult = user.validateSync();
+    const { message } = validationResult.errors.name;
+
+    assert(message === 'Name must be longer than 2 characters.');
     done();
   });
 });
