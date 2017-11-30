@@ -7,7 +7,6 @@ describe('Creating records', () => {
   it('saves a user', (done) => {
     const joe = new User({ 
       name: 'Joe',
-      postCount: Number
      });
 
     joe.save()
