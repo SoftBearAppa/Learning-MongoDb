@@ -5,7 +5,10 @@ describe('Creating records', () => {
 
   // `done()` is avaiable to each `it()` block as well.
   it('saves a user', (done) => {
-    const joe = new User({ name: 'Joe' });
+    const joe = new User({ 
+      name: 'Joe',
+      postCount: Number
+     });
 
     joe.save()
       .then(() => {
