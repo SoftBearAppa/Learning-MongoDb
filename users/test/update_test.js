@@ -38,7 +38,31 @@ describe('Updating records', () => {
   });
 
   /* Test updating data using the `.update()` method. This method can update bulk properties/values on a Model Instance. */
-  it('A Model Instancecan update', (done) => {
+  it('A Model Instance can update', (done) => {
     assertName(joe.update({ name: 'Alex' }), done);
+  });
+
+  /* Test updating data using the `.update()` method off of the `User()` class. This will find all instances of `User()` with the attributes of 'name: 'Joe'` and update the record to `name: 'Alex'.*/
+  it('A Model class can update', (done) => {
+    assertName(
+      User.update({ name: 'Joe' }, { name: 'Alex' }),
+      done
+    );
+  });
+
+  /* Test updating data using the `.findOneAndUpdate()` method off the `User()` class. This will find the first instance of `User()` with the attributes of `name : 'Joe'` and update it to `name: 'Alex'`.*/
+  it('A Model class can update one record', (done) => {
+    assertName(
+      User.findOneAndUpdate({ name: 'Joe' }, { name: 'Alex' }), 
+      done
+    );
+  });
+
+  /* Test updated data using the `.findByIdAndUpdate()` method off of the `User()` class. This will find a record with the provided id. */
+  it('A Model class can find a record with an Id & update', (done) => {
+    assertName(
+      User.findByIdAndUpdate(joe._id, { name: 'Alex' }),
+      done
+    );
   });
 });
