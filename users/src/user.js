@@ -3,11 +3,17 @@ const { Schema } = mongoose;
 
 const UserSchema = new Schema({
 
-  /* Object added to 'name' proptery for validation */
+  /* Configuration Object added to 'name' proptery for validation */
   name: {
 
     /* Tells Mongoose that 'name' should be a String */
     type: String,
+
+    /* Defined a custom validator to be ran for each `User()` instance */
+    validate: {
+      validator: (name) => name.length > 2,
+      message: 'Name must be longer than 2 characters.'
+    },
 
     /* Tells Mongoose that this property is required & it also has an error message to be passed with it */
     required: [true, 'Name is required.']
