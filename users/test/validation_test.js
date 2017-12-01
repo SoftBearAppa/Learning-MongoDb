@@ -19,6 +19,7 @@ describe('Validation records', () => {
     done();
   });
 
+  /* Test the validation for `User()`, validating that the 'name' property is longer than 2 characters. */
   it("Requires a `User()` name to be longer than 2 characters", (done) => {
     const user = new User({ name: 'Al' });
     const validationResult = user.validateSync();
