@@ -29,6 +29,7 @@ describe('Validation records', () => {
     done();
   });
 
+  /* Test the validation that records aren't being saved if they are invalid. */
   it('Disallow invalid records from being saved.', (done) => {
     const user = new User({ name: 'Al' });
     user.save()
