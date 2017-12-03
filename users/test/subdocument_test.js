@@ -35,4 +35,31 @@ describe('Subdocuments', () => {
         done();
       });
   });
+
+  /* Test if we can remove a subdocument from a `User()` instance. */
+  it('remove a subdocument', (done) => {
+    const joe = new User({
+      name: 'Joe',
+      posts: [{
+        title: 'Subdocument'
+      }]
+    });
+
+    joe.save()
+      .then(() => User.findOne({ name: 'Joe' }))
+      .then((user) => {
+
+        // Grabs the `PostSchema()` subdocuments & assigns them to `post`.
+        const post = user.posts[0];
+
+        // `.remove()` is a Mongoose method.
+        post.remove();
+        return user.save();
+      })
+      .then(() => User.findOne({ name: 'Joe' }))
+      .then((user) => {
+        assert(user.posts.length === 0);
+        done();
+      });
+  });
 });
