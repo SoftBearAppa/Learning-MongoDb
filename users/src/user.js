@@ -26,6 +26,7 @@ const UserSchema = new Schema({
   posts: [PostSchema]
 });
 
+// `.get()` is a ES6 'getter' method. It is not a Mocha feature.
 UserSchema.virtual('postCount').get(function() {
   return this.posts.length;
 })
