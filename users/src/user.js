@@ -19,9 +19,16 @@ const UserSchema = new Schema({
     /* Tells Mongoose that this property is required & it also has an error message to be passed with it */
     required: [true, 'Name is required.']
   },
+
+  /* Removing 'postCount' field, to setup Virtual Field. So that the Server (Not MongoDB) can get the length of the 'post' field and relate it to 'postCount'
   postCount: Number,
+  */
   posts: [PostSchema]
 });
+
+UserSchema.virtual('postCount').get(function() {
+  return this.posts.length;
+})
 
 const User = mongoose.model('user', UserSchema);
 
