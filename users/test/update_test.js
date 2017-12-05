@@ -66,8 +66,10 @@ describe('Updating records', () => {
     );
   });
 
+  /* !!Placing an 'x' next to an `it()` block, signals to Mocha to ignore the test; Ignoring test while setting up Virtual Fields!! */
+
   /* Test using MongoDB Update Operators. This method TELLS the MongoDB to make the change, not the server. */
-  it('A Model class can increment their postcount by some number', (done) => {
+  xit('A Model class can increment their postcount by some number', (done) => {
 
     /* First we locate the User Instances that we want to update. */
     User.update(
