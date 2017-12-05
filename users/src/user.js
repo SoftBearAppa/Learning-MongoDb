@@ -23,7 +23,10 @@ const UserSchema = new Schema({
   /* Removing 'postCount' field, to setup Virtual Field. So that the Server (Not MongoDB) can get the length of the 'post' field and relate it to 'postCount'
   postCount: Number,
   */
-  posts: [PostSchema]
+  posts: [PostSchema],
+
+  // Added 'likes' as a replacement for 'postCount'.
+  likes: Number
 });
 
 // `.get()` is a ES6 'getter' method. It is not a Mocha feature.

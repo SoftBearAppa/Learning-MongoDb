@@ -7,7 +7,7 @@ describe('Updating records', () => {
 
   /* Before each `it()` statement, this `beforeEach()` gets executed to save an acutal user to the database, so that we have something to query, because in 'test_helper.js' the User collection gets dropped. */
   beforeEach((done) => {
-    joe = new User({ name: 'Joe', postCount: 0 });
+    joe = new User({ name: 'Joe', likes: 0 });
     joe.save()
       .then(() => done());
   });
@@ -66,22 +66,24 @@ describe('Updating records', () => {
     );
   });
 
-  /* !!Placing an 'x' next to an `it()` block, signals to Mocha to ignore the test; Ignoring test while setting up Virtual Fields!! */
+  /* !!Placing an 'x' next to an `it()` block, signals to Mocha to ignore the test; Ignoring test while setting up Virtual Fields!! 
+  
+  Changed validation to test 'likes' field insted of 'postCount', which is now a Virtual Field. */
 
   /* Test using MongoDB Update Operators. This method TELLS the MongoDB to make the change, not the server. */
-  xit('A Model class can increment their postcount by some number', (done) => {
+  it('A Model class can increment their likes by some number', (done) => {
 
     /* First we locate the User Instances that we want to update. */
     User.update(
       { name: 'Joe' }, 
 
       /* After locating the Instances, we call the MongoDB Update Operator `$inc:`. We grab the property that we want to increment/decrement & we tell it how much we want to change the value by */
-      { $inc: { postCount: 10 }}
+      { $inc: { likes: 10 }}
     )
     .then(() => {
       User.findOne({ name: 'Joe' })
         .then((user) => {
-          assert(user.postCount === 10)
+          assert(user.likes === 10)
           done();
         });
     });
