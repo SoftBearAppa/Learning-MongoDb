@@ -22,14 +22,16 @@ before((done) => {
 });
 
   beforeEach((done) => {
-    const { users, blogPost, comments } = mongoose.connections.collections;
 
+    // When Mongoose loads up collections to MongoDb & get reflected in MongoDb, Mongoose normalizes each collection name, by lowercasing each collection name.
+    const { users, blogposts, comments } = mongoose.connection.collections;
+    console.log(blogPosts);
     users.drop(() => {
       comments.drop(() => {
-        blogPost.drop(() => {
+        blogposts.drop(() => {
           done();
-        })
-      })
+        });
+      });
       // Ready to run the next test since, drop() is done. done() is a signal to Mocha to start the next test.
     });
   });
