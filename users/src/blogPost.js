@@ -9,8 +9,8 @@ const blogPostSchema = new Schema({
     // Type of reffernce to point of in a different collection
     type: Schema.Types.ObjectId,
 
-    // Refferencing the 'Comment' Collection; Working with Mongoose. It tells Mongoose to look in the 'Comment' Collection
-    ref: 'Comment'
+    // Refferencing the 'comment' Collection; Working with Mongoose. It tells Mongoose to look in the 'comment' Collection
+    ref: 'comment'
   }]
 });
 
