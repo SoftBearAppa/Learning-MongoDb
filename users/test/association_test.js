@@ -29,11 +29,14 @@ describe('Associations',() => {
       });
   });
 
-  /* `it.only()` Tells Mocha to ignore all the other validation test, & just run this */
-  it.only('saves a relation between a user & a blogpost', (done) => {
+  /* `it.only()` Tells Mocha to ignore all the other validation test, & just run this paticular one */
+  it('saves a relation between a user & a blogpost', (done) => {
     User.findOne({ name: 'Joe' })
+
+      /* You can add 'modifiers' to the query like: `.populate()`. This tells Mongoose to recrusivly load the 'blogPost' data, assocaited with the user `joe()` */
+      .populate('blogPost')
       .then((user) => {
-        console.log(user);
+        assert(user.blogPost[0].title === 'JS is Great!');
         done();
       })
   });
