@@ -22,8 +22,14 @@ before((done) => {
 });
 
   beforeEach((done) => {
-    mongoose.connection.collections.users.drop(() => {
+    const { users, blogPost, comments } = mongoose.connections.collections;
+
+    users.drop(() => {
+      comments.drop(() => {
+        blogPost.drop(() => {
+          done();
+        })
+      })
       // Ready to run the next test since, drop() is done. done() is a signal to Mocha to start the next test.
-      done();
     });
   });
