@@ -48,11 +48,13 @@ UserSchema.pre('remove', function(next) {
   /* `$in:` is a Monogo Operator. This patricular one is a Query Operator. */
 
   /* This query works as such:
-   Go through all of our BlogPosts. Look at their `_id`s, if their `_id` is `$in` the list of `this.blogPost`. then `remove()` it. */
-  BlogPost.remove({ _id: { $in: this.blogPost }});
-
-  // Called `next(); to signal to move on to the next middleware. In this case, there isn't anymore middleawre. It will then process the `.remove()` event.
-  next();
+   Go through all of our BlogPosts. Look at the BlogPost's`_id`s, if their `_id` is `$in` the list of `this.blogPost`. then `remove()` it. */
+  BlogPost.remove({ _id: { $in: this.blogPost }})
+  .then(() => {
+    
+    // Called `next(); to signal to move on to the next middleware. In this case, there isn't anymore middleawre. It will then process the `.remove()` event.
+    next();
+  });
 });
 
 const User = mongoose.model('user', UserSchema);
