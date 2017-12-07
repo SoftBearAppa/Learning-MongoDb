@@ -3,12 +3,16 @@ const User = require('../src/user');
 
 describe('Reading users out of the database', () => {
 
-  let joe;
+  let joe, maria, zack, alex; 
 
   /* Before each `it()` statement, this `beforeEach()` gets executed to save an acutal user to the database, so that we have something to query, because in 'test_helper.js' the User collection gets dropped. */
   beforeEach((done) => {
+    alex = new User({ name: 'Alex' });
     joe = new User({ name: 'Joe' });
-    joe.save()
+    maria = new User({ name: 'Maria' });
+    zack = new User({ name: 'Zack' });
+    
+    Promise.all([alex.save(), joe.save(), maria.save(), zack.save()])
       .then(() => done());
   });
 
@@ -32,4 +36,11 @@ describe('Reading users out of the database', () => {
         done();
       });
   });
+
+  /* [Section 11, Lecture 68] - Skip & Limit Queries
+    `.skip()` & `.limit()` are query modifiers. */
+  it('can skip & limit the result set', () => {
+
+    User.find({}).skip(1).limit(2)
+  })
 });
