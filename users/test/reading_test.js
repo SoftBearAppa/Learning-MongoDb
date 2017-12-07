@@ -39,8 +39,18 @@ describe('Reading users out of the database', () => {
 
   /* [Section 11, Lecture 68] - Skip & Limit Queries
     `.skip()` & `.limit()` are query modifiers. */
-  it('can skip & limit the result set', () => {
+  it('can skip & limit the result set', (done) => {
 
-    User.find({}).skip(1).limit(2)
-  })
+    /* `.sort()`, `.skip()`, & `.limit()` are Mongoose Query Modifiers. Using a '1' will `.sort()` the returned collection decending. Using '-1' with `.sort()` the reutrned collection ascending. */
+    User.find({})
+    .sort({ name: 1 })
+    .skip(1)
+    .limit(2)
+    .then((users) => {
+      assert(users.length === 2);
+      assert(users[0].name === 'Joe');
+      assert(users[1].name === 'Maria');
+      done();
+    });
+  });
 });
