@@ -42,9 +42,17 @@ UserSchema.virtual('postCount').get(function() {
 });
 
 /* MIDDLEWARE demonstration. We have 2 menthods for middleware. `.pre()` & `.post()`. They can be calle on four different events: `.save()`, `.validate()`, `.init()`, & `.remove()`. */
-UserSchema.pre('remove', function() {
+UserSchema.pre('remove', function(next) {
   const BlogPost = mongoose.model('blogPost');
 
+  /* `$in:` is a Monogo Operator. This patricular one is a Query Operator. */
+
+  /* This query works as such:
+   Go through all of our BlogPosts. Look at their `_id`s, if their `_id` is `$in` the list of `this.blogPost`. then `remove()` it. */
+  BlogPost.remove({ _id: { $in: this.blogPost }});
+
+  // Called `next(); to signal to move on to the next middleware. In this case, there isn't anymore middleawre. It will then process the `.remove()` event.
+  next();
 });
 
 const User = mongoose.model('user', UserSchema);
