@@ -39,7 +39,13 @@ const UserSchema = new Schema({
 // `.get()` is a ES6 'getter' method. It is not a Mocha feature.
 UserSchema.virtual('postCount').get(function() {
   return this.posts.length;
-})
+});
+
+/* MIDDLEWARE demonstration. We have 2 menthods for middleware. `.pre()` & `.post()`. They can be calle on four different events: `.save()`, `.validate()`, `.init()`, & `.remove()`. */
+UserSchema.pre('remove', function() {
+  const BlogPost = mongoose.model('blogPost');
+
+});
 
 const User = mongoose.model('user', UserSchema);
 
