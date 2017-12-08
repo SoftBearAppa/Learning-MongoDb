@@ -8,9 +8,7 @@ const AlbumSchema = new Schema({
   copiesSold: Number,
   numberTracks: Number,
   image: String,
-  revenue: Double,
+  revenue: Number,
 });
 
-const Album = mongoose.Schema('album', AlbumSchema);
-
-module.exports = Album;
+module.exports = AlbumSchema;
