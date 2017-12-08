@@ -1,0 +1,3 @@
+[submodule "UpStarMusic"]
+	path = UpStarMusic
+	url = https://github.com/StephenGrider/UpStarMusic.git
