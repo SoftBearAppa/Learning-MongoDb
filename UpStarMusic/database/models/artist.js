@@ -1,4 +1,4 @@
-// Todo: Create Artist Model
+
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const AlbumSchema = require('./album');
@@ -17,6 +17,6 @@ const ArtistSchema = new Schema({
   albums: [AlbumSchema]
 });
 
-const Artist = mongoose.Schema('artist', ArtistSchema);
+const Artist = mongoose.model('artist', ArtistSchema);
 
 module.exports = Artist;
