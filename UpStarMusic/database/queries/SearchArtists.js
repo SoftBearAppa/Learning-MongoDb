@@ -38,5 +38,9 @@ const buildQuery = (criteria) => {
     };
   };
 
+  if(name) {
+    query.$text = { $search: name }
+  };
+
   return query;
 }
