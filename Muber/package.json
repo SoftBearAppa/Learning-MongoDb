@@ -1,0 +1,24 @@
+{
+  "name": "muber",
+  "version": "1.0.0",
+  "description": "3rd Project for Stephen Grider's 'The Complete Developers Guide to MongoDB'",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SoftBearFeet/Learning-MongoDb.git"
+  },
+  "author": "Mark Schneider",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SoftBearFeet/Learning-MongoDb/issues"
+  },
+  "homepage": "https://github.com/SoftBearFeet/Learning-MongoDb#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mocha": "^4.0.1",
+    "mongoose": "^4.13.7"
+  }
+}
