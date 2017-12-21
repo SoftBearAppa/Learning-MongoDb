@@ -4,7 +4,7 @@
   "description": "3rd Project for Stephen Grider's 'The Complete Developers Guide to MongoDB'",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nodemon --exec mocha --recursive -R min"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "dependencies": {
     "express": "^4.16.2",
     "mocha": "^4.0.1",
-    "mongoose": "^4.13.7"
+    "mongoose": "^4.13.7",
+    "supertest": "^3.0.0"
   }
 }
