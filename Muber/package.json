@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/SoftBearFeet/Learning-MongoDb#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "mocha": "^4.0.1",
     "mongoose": "^4.13.7",
