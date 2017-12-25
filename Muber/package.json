@@ -4,7 +4,7 @@
   "description": "3rd Project for Stephen Grider's 'The Complete Developers Guide to MongoDB'",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon --exec mocha --recursive -R min"
+    "test": "SET NODE_ENV=test | nodemon --exec mocha --recursive -R min"
   },
   "repository": {
     "type": "git",
