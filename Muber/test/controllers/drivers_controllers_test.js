@@ -19,4 +19,22 @@ describe('Drivers Controller', () => {
         });
     });
   });
+
+  it('PUT to /api/drivers/id edits an existing driver', (done) => {
+    const driver = new Driver({ email: 't@t.com', driving: false });
+
+    driver.save()
+      .then(() => {
+        request(app)
+          .put(`/api/driver/${driver._id}`)
+          .send({driving: true })
+          .end(() => {
+            Driver.findOne({ email: 't@t.com' })
+            .then(driver => {
+              assert(driver.driving === true);
+              done();
+            });
+          });
+      });
+  });
 });
