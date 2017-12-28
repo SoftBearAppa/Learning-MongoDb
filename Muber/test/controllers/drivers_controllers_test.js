@@ -37,4 +37,21 @@ describe('Drivers Controller', () => {
           });
       });
   });
+
+  it('DELETES to /api/driver/id can delete a driver', (done) => {
+    const driver = new Driver({ email: 't@t.com' })
+
+    driver.save()
+      .then(() => {
+        request(app)
+          .delete(`/api/driver/${driver._id}`)
+          .end(() => {
+            Driver.findOne({ email: 't@t.com' })
+              .then((driver) => {
+                assert(driver === null)
+                done();
+              });
+          });
+      });
+  });
 });
